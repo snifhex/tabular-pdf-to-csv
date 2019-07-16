@@ -1,4 +1,4 @@
-# pdf-to-csv
+# pdf-tabular-to-csv
 Conver pdf with invisible border to csv easily.
 
 # Main goal of this script.
