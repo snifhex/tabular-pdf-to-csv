@@ -1,3 +1,10 @@
+"""
+Tabular data from pdf extractor.
+This script will automatically analyse all the pdf files from the folder and will check for tables in them and 
+then automatically create output folder in which there will the folder with the name of pdf and under that folder 
+there will be csv's and json files of the tables from that pdf
+"""
+
 import os
 import camelot
 
