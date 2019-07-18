@@ -8,32 +8,10 @@ def create_folder(file_name):
         to the pdf file name"""
 
     if os.path.exists('output'):
-        if os.getcwd().split('/')[-1] == 'output':
-            try:
-                os.mkdir(file_name)
-            except:
-                print(f'{file_name} already exists.')
-            os.chdir(file_name)
-        else:
-            os.chdir('output')
-            try:
-                os.mkdir(file_name)
-            except:
-                print(f'{file_name} already exists.')
-            os.chdir(file_name)
+        os.mkdir(f'output/{file_name}')
     else:
         os.mkdir('output')
-        os.chdir('output')
-        try:
-            os.mkdir(file_name)
-        except:
-            print(f'{file_name} already exists.')
-        os.chdir(file_name)
-
-
-def data_cleaning():
-    pass
-
+        os.mkdir(f'output/{file_name}')
 
 def main():
     """Main Function which is responsible for pdf parsing and exporting it into csv."""
@@ -47,7 +25,7 @@ def main():
             tables = camelot.read_pdf(
                 pdf, flavor='stream', pages=pages, )
             create_folder(file_name)
-            tables.export('tables.csv', f='csv')
+            tables.export(f'./output/{file_name}tables.csv', f='csv')
 
 
 if __name__ == "__main__":
