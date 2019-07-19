@@ -1,5 +1,5 @@
 # pdf-tabular-to-csv
-Conver pdf with invisible border to csv easily.
+Parse tables from pdf with invisible border to csv easily.
 
 # Main goal of this script?
 To parse table from the pdf having invisble border.
