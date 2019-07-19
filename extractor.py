@@ -7,6 +7,7 @@ there will be csv's and json files of the tables from that pdf
 
 import os
 import camelot
+from PyPDF2 import PdfFileReader
 
 
 def create_folder(file_name):
@@ -19,16 +20,24 @@ def create_folder(file_name):
     else:
         os.mkdir('output')
         os.mkdir(f'output/{file_name}')
+        
+def total_pages(pdf):
+    """Will find out total number of pages in given pdf and will return string of all the page numbers."""
+    
+    pdf_object = PdfFileReader(open(pdf, 'rb'))
+    pages = ','.join([str(i) for i in list(range(pdf_object.getNumPages()))])
+    return pages
 
 def main():
     """Main Function which is responsible for pdf parsing and exporting it into csv."""
     
-    # Change this pages variable according to your pdf.
-    pages = '4,5,6,7,8,9,10,11,12,13'
     for pdf in os.listdir():
         file_name, file_extension = os.path.splitext(pdf)
         if file_extension == '.pdf':
             print(pdf)
+            # Change this pages variable according to your pdf if you don't want to parse all the pages. 
+            pages = total_pages(pdf)
+            #Remove flavor parameter if you want to parse pdf's without visible borders.
             tables = camelot.read_pdf(
                 pdf, flavor='stream', pages=pages, )
             create_folder(file_name)
